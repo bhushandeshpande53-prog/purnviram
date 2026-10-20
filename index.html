@@ -40,7 +40,7 @@ input[type=text],textarea{width:100%;padding:12px;border-radius:14px;border:2px 
 footer{text-align:center;font-size:12px;color:var(--mu);padding:10px}
 .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;flex-wrap:wrap}
 </style></head><body>
-<header><div class="top"><img src="icon-192.png" alt="" onerror="this.onerror=null;this.src='icon.svg'"><h1 id="ti"></h1><button class="ib" data-a="lang" id="lg"></button><button class="ib" data-a="refresh" aria-label="Refresh">⟳</button></div><p class="sub" id="su"></p></header>
+<header><div class="top"><img src="icon-192.png" alt="" onerror="this.onerror=null;this.src='icon.svg'"><h1 id="ti"></h1><button class="ib" data-a="refresh" aria-label="Refresh">⟳</button></div><p class="sub" id="su"></p></header>
 <main id="m"></main>
 <nav class="nav" id="nv"></nav>
 <div id="rd"></div>
@@ -90,7 +90,7 @@ const chips=p=>p.labels.filter(l=>l!==C.pin).map((l,i)=>`<span class="chip c${i%
 function card(p,h){const pin=p.labels.includes(C.pin);return`<article class="card${h?' hero':''}" data-o="${p.id}"><div class="th${p.img?'':' no'}" ${p.img?`style="background-image:url('${esc(p.img)}')"`:''}>${p.img?'':'🍃'}</div><div class="cb"><div class="dt">${pin?t('pin')+' · ':''}${p.vid?'▶ · ':''}${dstr(p.date)}</div><h3>${esc(p.title)}</h3>${chips(p)}</div></article>`}
 const list=(a,x)=>a.length?`<div class="grid">${a.map((p,i)=>card(p,x&&i===0)).join('')}</div>`:`<div class="msg">${t('empty')}</div>`;
 function draw(){document.documentElement.dataset.theme=P.theme;document.documentElement.style.setProperty('--fs',P.size+'px');document.documentElement.lang=P.lang;
- $('#ti').textContent=C.title;$('#su').textContent=C.subtitle;$('#lg').textContent=P.lang==='mr'?'EN':'मराठी';
+ $('#ti').textContent=C.title;$('#su').textContent=C.subtitle;
  const N=[['home','🏡'],['labels','🏷️'],['archive','🗓️'],['search','🔍'],['saved','🔖'],['settings','⚙️']];
  $('#nv').innerHTML=N.map(([k,i])=>`<button data-v="${k}" class="${S.view===k?'on':''}"><b>${i}</b>${t(k)}</button>`).join('');
  const m=$('#m'),v=S.view;let h='';
@@ -129,7 +129,7 @@ document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v
  if(d.v){S.view=d.v;S.label=null;S.ym=null;draw();scrollTo(0,0)}
  else if(d.o)openP(d.o);else if(d.l){S.label=d.l;draw()}else if(d.y){S.ym=d.y;draw()}
  else if(d.s){P[d.s]=d.x;sv();draw()}
- else if(d.a==='lang'){P.lang=P.lang==='mr'?'en':'mr';sv();draw()}
+ 
  else if(d.a==='refresh')load();else if(d.a==='clr'){S.label=null;S.ym=null;draw()}
  else if(d.a==='close')history.back();
  else if(d.a==='like'){const i=S.likes.indexOf(d.id);i<0?S.likes.push(d.id):S.likes.splice(i,1);W('aff_l',S.likes);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
