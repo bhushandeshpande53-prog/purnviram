@@ -108,7 +108,7 @@ function draw(){document.documentElement.dataset.theme=P.theme;document.document
 <div class="box"><b>${t('theme')}</b><div>${Bt('theme','auto',t('auto'))}${Bt('theme','light',t('light'))}${Bt('theme','dark',t('dark'))}</div></div>
 <div class="box"><b>${t('ts')}: ${P.size}px</b><input type="range" id="sz" min="14" max="28" value="${P.size}" style="width:100%;height:36px"></div>
 <div class="box"><b>❤️ ${t('lk')}: ${S.likes.length}</b></div>
-<div class="box"><button class="btn" data-a="inst">⬇️ ${t('inst')}</button><button class="btn o" data-a="sapp">↗ ${t('sa')}</button></div>
+<div class="box"><a class="btn" href="https://github.com/bhushandeshpande53-prog/purnviram/releases/download/v1.0/default.apk" target="_blank" rel="noopener">⬇️ ${t('inst')}</a><button class="btn o" data-a="sapp">↗ ${t('sa')}</button></div>
 <div class="box"><b>${t('fb')}</b><textarea id="fbt" rows="4" placeholder="${t('fbp')}"></textarea><button class="btn" data-a="fb">${t('send')}</button></div>
 <h2>${t('about')}</h2><div class="box about"><img class="ph" src="${C.photo}" alt="${t('noph')}" onerror="this.outerHTML='<div class=phx>📷 ${t('noph')}</div>'">${C.about}</div>
 <footer>${C.copyright}</footer>`}
