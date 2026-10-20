@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="mr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>After the Full Stop...</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#2e7d32"><link rel="icon" href="icon-192.png"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f8ee;--cd:#fff;--tx:#1b2b1d;--mu:#5b705d;--pr:#2e7d32;--ac:#8bc34a;--ln:#dcebd3;--fs:18px}
+[data-theme=dark]{--bg:#0f1a12;--cd:#1a2a1e;--tx:#e6f0e3;--mu:#9bb39d;--pr:#66bb6a;--ln:#2a3e2e}
+@media(prefers-color-scheme:dark){[data-theme=auto]{--bg:#0f1a12;--cd:#1a2a1e;--tx:#e6f0e3;--mu:#9bb39d;--pr:#66bb6a;--ln:#2a3e2e}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Noto Sans Devanagari',system-ui,sans-serif;padding-bottom:76px;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+input,textarea{user-select:text;-webkit-user-select:text}
+header{background:linear-gradient(135deg,#1b5e20,#43a047 60%,#9ccc65);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 14px;border-radius:0 0 26px 26px;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;gap:10px}.top img{width:44px;height:44px;border-radius:12px}
+h1{font-family:'Noto Serif Devanagari',serif;font-size:17px;margin:0;line-height:1.25;flex:1}
+.sub{font-size:12px;line-height:1.5;margin:8px 2px 0;opacity:.95;font-family:'Noto Serif Devanagari',serif}
+.ib{background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:12px;min-width:44px;height:44px;font-size:15px;font-weight:700}
+main{padding:14px;max-width:820px;margin:auto}
+.grid{display:grid;gap:14px}@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--cd);border-radius:20px;overflow:hidden;box-shadow:0 3px 12px #1b5e2018;border:1px solid var(--ln)}
+.card.hero{border:2px solid var(--ac)}
+.th{height:150px;background:linear-gradient(135deg,#c5e1a5,#81c784) center/cover}.th.no{display:flex;align-items:center;justify-content:center;font-size:44px}
+.cb{padding:12px 14px 14px}.card h3{font-family:'Noto Serif Devanagari',serif;font-size:17px;margin:6px 0;line-height:1.4}
+.dt{font-size:12px;color:var(--mu)}
+.chip{display:inline-block;padding:4px 11px;border-radius:99px;font-size:12px;margin:2px 4px 2px 0;color:#fff;border:0}
+.c0{background:#2e7d32}.c1{background:#558b2f}.c2{background:#00897b}.c3{background:#7cb342;color:#12310f}.c4{background:#689f38}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:6}
+.nav button{flex:1;background:0;border:0;color:var(--mu);font-size:11px;min-height:48px;border-radius:14px;font-family:inherit}.nav button b{display:block;font-size:19px}
+.nav button.on{color:var(--pr);background:#8bc34a22;font-weight:700}
+.btn{display:inline-block;background:var(--pr);color:#fff;border:0;border-radius:14px;padding:12px 16px;font-size:15px;text-decoration:none;margin:4px 6px 4px 0;font-family:inherit;min-height:44px}
+.btn.o{background:transparent;color:var(--pr);border:2px solid var(--pr)}
+h2{font-family:'Noto Serif Devanagari',serif;color:var(--pr);margin:14px 0 8px}
+.box{background:var(--cd);border-radius:20px;padding:14px;margin:12px 0;border:1px solid var(--ln)}
+.msg{text-align:center;padding:36px 12px;color:var(--mu)}.sp{width:38px;height:38px;border:4px solid var(--ln);border-top-color:var(--pr);border-radius:50%;margin:auto;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
+input[type=text],textarea{width:100%;padding:12px;border-radius:14px;border:2px solid var(--ln);background:var(--cd);color:var(--tx);font-size:16px;font-family:inherit}
+#rd{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto;display:none;padding-top:env(safe-area-inset-top)}
+#rd .in{max-width:760px;margin:auto;padding:12px 16px 60px}
+.bar{display:flex;gap:8px;align-items:center;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
+.body{font-family:'Noto Serif Devanagari',Georgia,serif;font-size:var(--fs);line-height:1.95;overflow-wrap:anywhere}
+.body img{max-width:100%;height:auto;border-radius:14px}.body iframe{width:100%!important;height:auto!important;aspect-ratio:16/9;border:0;border-radius:14px}
+.body a{color:var(--pr)}.body table{max-width:100%}
+.about .ph{display:block;width:100%;max-width:280px;height:auto;margin:0 auto 12px;border-radius:18px;border:3px solid var(--ac)}.about .phx{max-width:280px;min-height:200px;margin:0 auto 12px;border:3px dashed var(--ac);border-radius:18px;display:flex;align-items:center;justify-content:center;color:var(--mu);font-size:14px}
+.about p{line-height:1.8}.about a{color:var(--pr);word-break:break-all}
+footer{text-align:center;font-size:12px;color:var(--mu);padding:10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;flex-wrap:wrap}
+</style></head><body>
+<header><div class="top"><img src="icon-192.png" alt="" onerror="this.onerror=null;this.src='icon.svg'"><h1 id="ti"></h1><button class="ib" data-a="lang" id="lg"></button><button class="ib" data-a="refresh" aria-label="Refresh">⟳</button></div><p class="sub" id="su"></p></header>
+<main id="m"></main>
+<nav class="nav" id="nv"></nav>
+<div id="rd"></div>
+<script>
+// ====== OWNER SETTINGS: only you edit this part (readers cannot) ======
+const C={
+ blog:'https://bhushandeshpande53.blogspot.com',
+ title:'After the Full Stop... (पूर्णविरामानंतर...)',
+ subtitle:'माझी मला साक्ष आहे । मी ‘ब्लॉग’कर्ता विद्वान नोहे । पण धान्यराशींत आपुले पोहे । टाकावे वाटती ।।',
+ pin:'Pinned',            // put this label on a Blogger post to pin it on top
+ email:'bhushandeshpande737@gmail.com',
+ feedbackRepo:'',             // e.g. 'yourname/yourrepo' (GitHub) - optional
+ giscus:{repo:'',repoId:'',category:'',categoryId:''}, // optional comments (see guide)
+ photo:'owner.jpg',           // upload your photo with this exact file name
+ copyright:'© Bhushan Deshpande. All rights reserved. | सर्व हक्क राखीव.',
+ about:`<p>मी भूषण देशपांडे. अकोला इथे राहतो. मी ब्लॉगर आहे. ब्लॉग लिहिणे हा माझ्या आनंदाचा विषय आहे. मी सामाजिक, धार्मिक, सांस्कृतिक, ऐतिहासिक आणि मनोवैज्ञानिक विषयांवर ब्लॉगच्या माध्यमातून व्यक्त होतो. लेखन, वाचन, संगीत श्रवण आणि प्रवास याची मला अत्यंत अभिरुची आहे.</p>
+<p>मी कवी सुद्धा आहे. माझ्या कवितांचा आस्वाद काव्यरसिकांना ‘After the Full Stop...’ या माझ्या ब्लॉगवर घेता येईल. ब्लॉगची लिंक : <a href="https://shorturl.at/65kbx" target="_blank" rel="noopener">shorturl.at/65kbx</a></p>
+<p>माझे Bhushan Deshpande हे युट्यूब चॅनेल सुद्धा आहे. त्याची लिंक : <a href="https://youtube.com/@bhushandeshpande53?si=PM6cmd-YV_wpUVpO" target="_blank" rel="noopener">https://youtube.com/@bhushandeshpande53</a></p>
+<p>युट्यूब चॅनेलवर सावरकरांची पत्रे (अंदमानच्या अंधेरीतून), सावरकरांचे विज्ञाननिष्ठ निबंध, प्रा. स.ह. देशपांडे यांच्यावरील माझे भाषण, प्रा. शेषराव मोरे यांच्यावरील मी निर्मिलेली डॉक्युमेंटरी (माहितीपट), विचारवंतांच्या लेखणीतून आंबेडकर-सावरकर, डॉ. आंबेडकरांवरील कवित्त, श्रीशिवराज्याभिषेक नाटक, सावरकरांची आरती, ‘आओ बच्चों तुम्हे दिखाएं झांकी हिंदुस्तान की’ या राष्ट्रभक्तिपर गीताचा सुबोध मराठी भावानुवाद इत्यादी बराच कन्टेन्ट उपलब्ध आहे.</p>
+<p><b>‘After the Full Stop...’ (पूर्णविरामानंतर...) या शीर्षकाविषयी –</b><br>एका अभूतपूर्व मानसिक-शारीरिक आघातातून काही अंशी सावरल्यावर मी हा ब्लॉग लिहायला घेतला. जीवनाला अक्षरशः एक पूर्णविराम मिळाल्यागत अवस्था झाली होती माझी. त्यावेळी मला स्फुरलेला हा ब्लॉग आहे. म्हणूनच ब्लॉगचं नावही ‘पूर्णविरामानंतर...’ हेच ठेवलंय.</p>
+<p>ईमेल आयडी : bhushandeshpande737@gmail.com<br>ध्वनिसंपर्क : 9226569683</p>`
+};
+// ====== Translations ======
+const T={mr:{home:'मुख्य',labels:'लेबल',archive:'संग्रह',search:'शोध',saved:'जतन',settings:'सेटिंग्ज',load:'लेख आणत आहे…',empty:'येथे काहीही नाही.',err:'लेख आणता आले नाहीत. इंटरनेट तपासा.',off:'ऑफलाइन – जुने लेख दाखवले आहेत.',retry:'पुन्हा प्रयत्न करा',pin:'📌 वरती ठेवलेले',orig:'मूळ ब्लॉगवर उघडा',share:'शेअर',like:'आवडले',save:'जतन करा',unsave:'जतन काढा',cm:'प्रतिक्रिया',cmb:'ब्लॉगवर प्रतिक्रिया द्या',ph:'शीर्षक किंवा शब्द शोधा…',theme:'थीम',auto:'ऑटो',light:'लाईट',dark:'डार्क',ts:'अक्षर आकार',lang:'भाषा',inst:'हे अ‍ॅप इन्स्टॉल करा',ih:'ब्राउझर मेनू (⋮) मध्ये “Add to Home screen / Install app” निवडा.',sa:'हे अ‍ॅप शेअर करा',fb:'अभिप्राय पाठवा',fbp:'तुमचा अभिप्राय येथे लिहा…',send:'पाठवा',about:'ब्लॉगरविषयी',lk:'तुम्हाला आवडलेले लेख',all:'‹ सर्व',noph:'फोटो',back:'‹ मागे',cp:'लिंक कॉपी झाली.',posts:'लेख',more:'अजून'},
+en:{home:'Home',labels:'Labels',archive:'Archive',search:'Search',saved:'Saved',settings:'Settings',load:'Loading posts…',empty:'Nothing here yet.',err:'Could not load posts. Check your internet.',off:'Offline – showing older posts.',retry:'Try again',pin:'📌 Pinned',orig:'Open original post',share:'Share',like:'Like',save:'Bookmark',unsave:'Remove bookmark',cm:'Comments',cmb:'Comment on Blogger',ph:'Search titles or words…',theme:'Theme',auto:'Auto',light:'Light',dark:'Dark',ts:'Text size',lang:'Language',inst:'Install this app',ih:'In the browser menu (⋮) choose “Add to Home screen / Install app”.',sa:'Share this app',fb:'Send feedback',fbp:'Write your feedback here…',send:'Send',about:'About the Blogger',lk:'Posts you liked',all:'‹ All',noph:'Photo',back:'‹ Back',cp:'Link copied.',posts:'posts',more:'more'}};
+const $=s=>document.querySelector(s),L=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},W=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const P=Object.assign({lang:'mr',theme:'auto',size:18},L('aff_p')||{});
+const S={view:'home',posts:[],st:'load',label:null,ym:null,likes:L('aff_l')||[],marks:L('aff_b')||[]};
+const t=k=>T[P.lang][k];
+const sv=()=>W('aff_p',P);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function jsonp(u){return new Promise((ok,no)=>{const n='cb'+Math.random().toString(36).slice(2),s=document.createElement('script');window[n]=d=>{ok(d);s.remove();delete window[n]};s.onerror=()=>{s.remove();no()};s.src=u+'&alt=json-in-script&callback='+n;document.head.appendChild(s)})}
+function clean(h){const d=new DOMParser().parseFromString(h||'','text/html');d.querySelectorAll('script,style,object,embed').forEach(e=>e.remove());d.querySelectorAll('*').forEach(e=>[...e.attributes].forEach(a=>{if(/^on/i.test(a.name))e.removeAttribute(a.name)}));return d}
+function parse(e){const d=clean((e.content||e.summary||{}).$t),im=d.querySelector('img');
+ return{id:e.id.$t.split('post-').pop(),title:e.title.$t||'',date:e.published.$t,labels:(e.category||[]).map(c=>c.term),link:(e.link.find(l=>l.rel==='alternate')||{}).href||C.blog,html:d.body.innerHTML,text:d.body.textContent||'',img:im?im.src:(e['media$thumbnail']||{}).url||'',vid:!!d.querySelector('iframe')}}
+async function load(){S.st='load';draw();const all=[],seen={};let i=1,tot=1e9,ok=false;
+ try{while(i<=tot){let r;try{r=await jsonp(C.blog+'/feeds/posts/default?max-results=50&orderby=published&start-index='+i)}catch(e){try{r=await jsonp(C.blog+'/feeds/posts/default?max-results=50&orderby=published&start-index='+i)}catch(e2){if(!ok)throw e2;break}}
+  ok=true;const f=r.feed,en=f.entry||[];tot=+((f['openSearch$totalResults']||{}).$t)||tot;
+  en.forEach(x=>{try{const p=parse(x);if(!seen[p.id]){seen[p.id]=1;all.push(p)}}catch(e){}});
+  if(!en.length)break;i+=en.length;if(tot===1e9&&en.length<50)break}
+  S.posts=all;S.st='ok';W('aff_c',all)}
+ catch(e){const c=L('aff_c');if(c&&c.length){S.posts=c;S.st='off'}else S.st='err'}
+ draw()}
+const dstr=d=>new Date(d).toLocaleDateString(P.lang==='mr'?'mr-IN':'en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+const sorted=l=>[...l].sort((a,b)=>(b.labels.includes(C.pin)-a.labels.includes(C.pin))||(new Date(b.date)-new Date(a.date)));
+const chips=p=>p.labels.filter(l=>l!==C.pin).map((l,i)=>`<span class="chip c${i%5}">${esc(l)}</span>`).join('');
+function card(p,h){const pin=p.labels.includes(C.pin);return`<article class="card${h?' hero':''}" data-o="${p.id}"><div class="th${p.img?'':' no'}" ${p.img?`style="background-image:url('${esc(p.img)}')"`:''}>${p.img?'':'🍃'}</div><div class="cb"><div class="dt">${pin?t('pin')+' · ':''}${p.vid?'▶ · ':''}${dstr(p.date)}</div><h3>${esc(p.title)}</h3>${chips(p)}</div></article>`}
+const list=(a,x)=>a.length?`<div class="grid">${a.map((p,i)=>card(p,x&&i===0)).join('')}</div>`:`<div class="msg">${t('empty')}</div>`;
+function draw(){document.documentElement.dataset.theme=P.theme;document.documentElement.style.setProperty('--fs',P.size+'px');document.documentElement.lang=P.lang;
+ $('#ti').textContent=C.title;$('#su').textContent=C.subtitle;$('#lg').textContent=P.lang==='mr'?'EN':'मराठी';
+ const N=[['home','🏡'],['labels','🏷️'],['archive','🗓️'],['search','🔍'],['saved','🔖'],['settings','⚙️']];
+ $('#nv').innerHTML=N.map(([k,i])=>`<button data-v="${k}" class="${S.view===k?'on':''}"><b>${i}</b>${t(k)}</button>`).join('');
+ const m=$('#m'),v=S.view;let h='';
+ if(S.st==='load'&&!S.posts.length){m.innerHTML=`<div class="msg"><div class="sp"></div><p>${t('load')}</p></div>`;return}
+ if(S.st==='err'&&!S.posts.length){m.innerHTML=`<div class="msg"><p>⚠️ ${t('err')}</p><button class="btn" data-a="refresh">${t('retry')}</button></div>`;return}
+ if(S.st==='off')h+=`<div class="box">📴 ${t('off')}</div>`;
+ const S2=sorted(S.posts);
+ if(v==='home')h+=list(S2,true);
+ else if(v==='labels'){if(S.label)h+=`<button class="btn o" data-a="clr">${t('all')}</button><h2>${esc(S.label)}</h2>`+list(S2.filter(p=>p.labels.includes(S.label)));else{const c={};S.posts.forEach(p=>p.labels.forEach(l=>{if(l!==C.pin)c[l]=(c[l]||0)+1}));h+=Object.keys(c).sort().map((l,i)=>`<button class="chip c${i%5}" data-l="${esc(l)}" style="font-size:15px;padding:9px 15px;font-family:inherit">${esc(l)} (${c[l]})</button>`).join('')||`<div class="msg">${t('empty')}</div>`}}
+ else if(v==='archive'){if(S.ym)h+=`<button class="btn o" data-a="clr">${t('all')}</button><h2>${S.ym}</h2>`+list(S2.filter(p=>p.date.slice(0,7)===S.ym));else{const c={};S.posts.forEach(p=>{const k=p.date.slice(0,7);c[k]=(c[k]||0)+1});h+=Object.keys(c).sort().reverse().map(k=>`<div class="box" data-y="${k}" style="cursor:pointer"><b>${new Date(k+'-15').toLocaleDateString(P.lang==='mr'?'mr-IN':'en-IN',{month:'long',year:'numeric'})}</b> · ${c[k]} ${t('posts')}</div>`).join('')}}
+ else if(v==='search')h+=`<input type="text" id="q" placeholder="${t('ph')}" autocomplete="off"><div id="res" style="margin-top:14px"></div>`;
+ else if(v==='saved')h+=list(S2.filter(p=>S.marks.includes(p.id)));
+ else if(v==='settings'){const Bt=(k,x,a)=>`<button class="btn${P[k]===x?'':' o'}" data-s="${k}" data-x="${x}">${a}</button>`;
+  h+=`<div class="box"><b>${t('lang')}</b><div>${Bt('lang','mr','मराठी')}${Bt('lang','en','English')}</div></div>
+<div class="box"><b>${t('theme')}</b><div>${Bt('theme','auto',t('auto'))}${Bt('theme','light',t('light'))}${Bt('theme','dark',t('dark'))}</div></div>
+<div class="box"><b>${t('ts')}: ${P.size}px</b><input type="range" id="sz" min="14" max="28" value="${P.size}" style="width:100%;height:36px"></div>
+<div class="box"><b>❤️ ${t('lk')}: ${S.likes.length}</b></div>
+<div class="box"><button class="btn" data-a="inst">⬇️ ${t('inst')}</button><button class="btn o" data-a="sapp">↗ ${t('sa')}</button></div>
+<div class="box"><b>${t('fb')}</b><textarea id="fbt" rows="4" placeholder="${t('fbp')}"></textarea><button class="btn" data-a="fb">${t('send')}</button></div>
+<h2>${t('about')}</h2><div class="box about"><img class="ph" src="${C.photo}" alt="${t('noph')}" onerror="this.outerHTML='<div class=phx>📷 ${t('noph')}</div>'">${C.about}</div>
+<footer>${C.copyright}</footer>`}
+ m.innerHTML=h;
+ if(v==='search'){$('#q').oninput=e=>{const q=e.target.value.trim().toLowerCase();$('#res').innerHTML=q?list(S2.filter(p=>(p.title+' '+p.text+' '+p.labels.join(' ')).toLowerCase().includes(q))):''}}
+ if(v==='settings')$('#sz').oninput=e=>{P.size=+e.target.value;sv();document.documentElement.style.setProperty('--fs',P.size+'px');e.target.previousElementSibling.textContent=t('ts')+': '+P.size+'px'}}
+function openP(id,np){const p=S.posts.find(x=>x.id===id);if(!p)return;const r=$('#rd'),lk=S.likes.includes(id),bm=S.marks.includes(id);
+ r.innerHTML=`<div class="in"><div class="bar"><button class="btn o" data-a="close">${t('back')}</button></div><div class="dt">${dstr(p.date)}</div><h2 style="font-size:1.4em;margin:6px 0">${esc(p.title)}</h2><div>${chips(p)}</div><div class="body">${p.html}</div>
+<div class="row"><button class="btn${lk?'':' o'}" data-a="like" data-id="${id}">${lk?'❤️':'🤍'} ${t('like')}</button><button class="btn o" data-a="share" data-id="${id}">↗ ${t('share')}</button><button class="btn o" data-a="mark" data-id="${id}">🔖 ${bm?t('unsave'):t('save')}</button><a class="btn o" href="${p.link}" target="_blank" rel="noopener">🌐 ${t('orig')}</a></div>
+<h2>${t('cm')}</h2><div id="cm"></div><footer>${C.copyright}</footer></div>`;
+ r.style.display='block';r.scrollTop=0;if(!np)history.pushState({r:1},'');
+ const g=C.giscus;if(g.repo){const s=document.createElement('script');s.src='https://giscus.app/client.js';s.async=true;s.crossOrigin='anonymous';Object.entries({'data-repo':g.repo,'data-repo-id':g.repoId,'data-category':g.category,'data-category-id':g.categoryId,'data-mapping':'specific','data-term':id,'data-theme':document.body.clientWidth&&matchMedia('(prefers-color-scheme:dark)').matches&&P.theme==='auto'||P.theme==='dark'?'dark':'light','data-lang':'en'}).forEach(([k,v])=>s.setAttribute(k,v));$('#cm').appendChild(s)}else $('#cm').innerHTML=`<a class="btn" href="${p.link}#comments" target="_blank" rel="noopener">💬 ${t('cmb')}</a>`}
+function closeP(){$('#rd').style.display='none'}
+let dp=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
+function toast(s){alert(s)}
+async function share(u,ti){try{if(navigator.share)await navigator.share({title:ti,url:u});else{await navigator.clipboard.writeText(u);toast(t('cp'))}}catch(e){}}
+document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v],[data-o],[data-l],[data-y],[data-s]');if(!x)return;const d=x.dataset;
+ if(d.v){S.view=d.v;S.label=null;S.ym=null;draw();scrollTo(0,0)}
+ else if(d.o)openP(d.o);else if(d.l){S.label=d.l;draw()}else if(d.y){S.ym=d.y;draw()}
+ else if(d.s){P[d.s]=d.x;sv();draw()}
+ else if(d.a==='lang'){P.lang=P.lang==='mr'?'en':'mr';sv();draw()}
+ else if(d.a==='refresh')load();else if(d.a==='clr'){S.label=null;S.ym=null;draw()}
+ else if(d.a==='close')history.back();
+ else if(d.a==='like'){const i=S.likes.indexOf(d.id);i<0?S.likes.push(d.id):S.likes.splice(i,1);W('aff_l',S.likes);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
+ else if(d.a==='mark'){const i=S.marks.indexOf(d.id);i<0?S.marks.push(d.id):S.marks.splice(i,1);W('aff_b',S.marks);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
+ else if(d.a==='share'){const p=S.posts.find(q=>q.id===d.id);share(p.link,p.title)}
+ else if(d.a==='sapp')share(location.href.split('#')[0],C.title);
+ else if(d.a==='inst'){if(dp){dp.prompt()}else toast(t('ih'))}
+ else if(d.a==='fb'){const v=($('#fbt').value||'').trim();if(!v)return;const u=C.feedbackRepo?`https://github.com/${C.feedbackRepo}/issues/new?title=${encodeURIComponent('Feedback')}&body=${encodeURIComponent(v)}`:`mailto:${C.email}?subject=${encodeURIComponent('Feedback: '+C.title)}&body=${encodeURIComponent(v)}`;location.href=u}});
+addEventListener('popstate',closeP);
+['copy','cut','contextmenu','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault()}));
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+draw();load();
+</script></body></html>
