@@ -1,30 +1,31 @@
-// firebase-messaging-sw.js - ॲप बंद असतानाही सूचना दाखवतो आणि दाबल्यावर लेख उघडतो
+// firebase-messaging-sw.js  (आवृत्ती v2)
+// Firebase चा तयार कोड न वापरता, सूचना दाखवणे आणि दाबल्यावर लेख उघडणे हे आपणच हाताळतो.
 
-// सूचनेवर दाबल्यावर ब्लॉगचा लेख उघडण्यासाठी (हा भाग Firebase च्या कोडच्या आधी असणं आवश्यक आहे)
-self.addEventListener("notificationclick", (event) => {
-  const d = event.notification.data || {};
-  const m = d.FCM_MSG || {};
+// नवीन आवृत्ती आली की लगेच चालू व्हावी
+self.addEventListener("install", () => self.skipWaiting());
+self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
+
+// सूचना आली की ती दाखवा
+self.addEventListener("push", (event) => {
+  let p = {};
+  try {
+    p = event.data ? event.data.json() : {};
+  } catch (e) {}
+  const n = p.notification || {};
+  const d = p.data || {};
+  const title = d.title || n.title || "नवीन लेख";
+  const body = d.body || n.body || "";
   const url =
-    (m.data && m.data.url) ||
-    (m.fcmOptions && m.fcmOptions.link) ||
-    d.url;
-  if (!url) return;
-  event.stopImmediatePropagation();
+    d.url || (p.fcmOptions && p.fcmOptions.link) || n.click_action || "";
+  event.waitUntil(
+    self.registration.showNotification(title, { body: body, data: { url: url } })
+  );
+});
+
+// सूचनेवर दाबल्यावर लेख उघडा
+self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  event.waitUntil(clients.openWindow(url.replace(/^http:/, "https:")));
+  const url = (event.notification.data && event.notification.data.url) || "";
+  if (!url) return;
+  event.waitUntil(self.clients.openWindow(url.replace(/^http:/, "https:")));
 });
-
-importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
-
-firebase.initializeApp({
-  apiKey: "AIzaSyB996i84GFeaRgXbkwuTUSHvMY4VQI-X3c",
-  authDomain: "after-the-full-stop.firebaseapp.com",
-  projectId: "after-the-full-stop",
-  storageBucket: "after-the-full-stop.firebasestorage.app",
-  messagingSenderId: "259763624688",
-  appId: "1:259763624688:web:6ce314024dbf1dcd698035"
-});
-
-// सूचना (title + body) आली की Firebase ती आपोआप दाखवतो.
-firebase.messaging();
