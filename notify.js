@@ -17,6 +17,13 @@ const VAPID_KEY = "BCSIU0HLNkU3GL-5XJWVEn8FRtrneFUN3ibdcIpYubC5XCReW9oB2-mAPTAxp
 const supported = "Notification" in window && "serviceWorker" in navigator;
 const alreadyDone = localStorage.getItem("fcmToken") && Notification.permission === "granted";
 
+if (supported && alreadyDone) {
+  // आधीच चालू असेल तर फक्त सूचनेची फाईल अद्ययावत ठेवा
+  navigator.serviceWorker
+    .register("./firebase-messaging-sw.js", { scope: "./fcm-scope/" })
+    .catch(() => {});
+}
+
 if (supported && !alreadyDone) {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
