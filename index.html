@@ -142,4 +142,4 @@ addEventListener('popstate',closeP);
 ['copy','cut','contextmenu','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault()}));
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 draw();load();
-</script></body></html>
+</script><script type="module" src="notify.js"></script></body></html>
