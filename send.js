@@ -23,7 +23,7 @@ async function main() {
   const title = entry.title.$t;
   const published = entry.published.$t;
   const alt = (entry.link || []).find((l) => l.rel === "alternate");
-  const link = alt ? alt.href : "https://bhushandeshpande53.blogspot.com";
+  const link = (alt ? alt.href : "https://bhushandeshpande53.blogspot.com").replace("http://", "https://");
 
   // 2. शेवटी कोणता लेख पाहिला होता ते तपासा
   const metaRef = db.collection("meta").doc("lastPost");
