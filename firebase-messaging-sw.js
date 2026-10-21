@@ -1,7 +1,8 @@
-// firebase-messaging-sw.js  (आवृत्ती v2)
-// Firebase चा तयार कोड न वापरता, सूचना दाखवणे आणि दाबल्यावर लेख उघडणे हे आपणच हाताळतो.
+// firebase-messaging-sw.js  (आवृत्ती v4)
+// सूचना दाखवणे आणि दाबल्यावर लेख उघडणे हे आपणच हाताळतो.
 
-// नवीन आवृत्ती आली की लगेच चालू व्हावी
+const BLOG_HOME = "https://bhushandeshpande53.blogspot.com";
+
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
 
@@ -16,7 +17,11 @@ self.addEventListener("push", (event) => {
   const title = d.title || n.title || "नवीन लेख";
   const body = d.body || n.body || "";
   const url =
-    d.url || (p.fcmOptions && p.fcmOptions.link) || n.click_action || "";
+    d.link ||
+    d.url ||
+    (p.fcmOptions && p.fcmOptions.link) ||
+    n.click_action ||
+    BLOG_HOME;
   event.waitUntil(
     self.registration.showNotification(title, { body: body, data: { url: url } })
   );
@@ -25,7 +30,7 @@ self.addEventListener("push", (event) => {
 // सूचनेवर दाबल्यावर लेख उघडा
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url = (event.notification.data && event.notification.data.url) || "";
-  if (!url) return;
+  const url =
+    (event.notification.data && event.notification.data.url) || BLOG_HOME;
   event.waitUntil(self.clients.openWindow(url.replace(/^http:/, "https:")));
 });
