@@ -1,0 +1,19 @@
+name: Notify new post
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install firebase-admin@12.7.0
+      - run: node send.js
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
