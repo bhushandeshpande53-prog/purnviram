@@ -64,12 +64,14 @@ const C={
 <p>ईमेल आयडी : bhushandeshpande737@gmail.com<br>ध्वनिसंपर्क : 9226569683</p>`
 };
 // ====== Translations ======
-const T={mr:{home:'मुख्य',labels:'लेबल',archive:'संग्रह',search:'शोध',saved:'जतन',settings:'सेटिंग्ज',load:'लेख आणत आहे…',empty:'येथे काहीही नाही.',err:'लेख आणता आले नाहीत. इंटरनेट तपासा.',off:'ऑफलाइन – जुने लेख दाखवले आहेत.',retry:'पुन्हा प्रयत्न करा',pin:'📌 वरती ठेवलेले',orig:'मूळ ब्लॉगवर उघडा',share:'शेअर',like:'आवडले',save:'जतन करा',unsave:'जतन काढा',cm:'प्रतिक्रिया',cmb:'ब्लॉगवर प्रतिक्रिया द्या',ph:'शीर्षक किंवा शब्द शोधा…',theme:'थीम',auto:'ऑटो',light:'लाईट',dark:'डार्क',ts:'अक्षर आकार',lang:'भाषा',inst:'हे अ‍ॅप इन्स्टॉल करा',ih:'ब्राउझर मेनू (⋮) मध्ये “Add to Home screen / Install app” निवडा.',sa:'हे अ‍ॅप शेअर करा',fb:'अभिप्राय पाठवा',fbp:'तुमचा अभिप्राय येथे लिहा…',send:'पाठवा',about:'ब्लॉगरविषयी',lk:'तुम्हाला आवडलेले लेख',all:'‹ सर्व',noph:'फोटो',back:'‹ मागे',cp:'लिंक कॉपी झाली.',posts:'लेख',more:'अजून'},
-en:{home:'Home',labels:'Labels',archive:'Archive',search:'Search',saved:'Saved',settings:'Settings',load:'Loading posts…',empty:'Nothing here yet.',err:'Could not load posts. Check your internet.',off:'Offline – showing older posts.',retry:'Try again',pin:'📌 Pinned',orig:'Open original post',share:'Share',like:'Like',save:'Bookmark',unsave:'Remove bookmark',cm:'Comments',cmb:'Comment on Blogger',ph:'Search titles or words…',theme:'Theme',auto:'Auto',light:'Light',dark:'Dark',ts:'Text size',lang:'Language',inst:'Install this app',ih:'In the browser menu (⋮) choose “Add to Home screen / Install app”.',sa:'Share this app',fb:'Send feedback',fbp:'Write your feedback here…',send:'Send',about:'About the Blogger',lk:'Posts you liked',all:'‹ All',noph:'Photo',back:'‹ Back',cp:'Link copied.',posts:'posts',more:'more'}};
+const T={mr:{home:'मुख्य',labels:'लेबल',archive:'संग्रह',search:'शोध',saved:'जतन',settings:'सेटिंग्ज',load:'लेख आणत आहे…',empty:'येथे काहीही नाही.',err:'लेख आणता आले नाहीत. इंटरनेट तपासा.',off:'ऑफलाइन – जुने लेख दाखवले आहेत.',retry:'पुन्हा प्रयत्न करा',pin:'📌 वरती ठेवलेले',orig:'मूळ ब्लॉगवर उघडा',share:'शेअर',like:'आवडले',save:'जतन करा',unsave:'जतन काढा',cm:'प्रतिक्रिया',cmb:'ब्लॉगवर प्रतिक्रिया द्या',ph:'शीर्षक किंवा शब्द शोधा…',theme:'थीम',auto:'ऑटो',light:'लाईट',dark:'डार्क',ts:'अक्षर आकार',lang:'भाषा',inst:'हे अ‍ॅप इन्स्टॉल करा',ih:'ब्राउझर मेनू (⋮) मध्ये “Add to Home screen / Install app” निवडा.',sa:'हे अ‍ॅप शेअर करा',fb:'अभिप्राय पाठवा',fbp:'तुमचा अभिप्राय येथे लिहा…',send:'पाठवा',about:'ब्लॉगरविषयी',lk:'तुम्हाला आवडलेले लेख',all:'‹ सर्व',noph:'फोटो',back:'‹ मागे',cp:'लिंक कॉपी झाली.',posts:'लेख',more:'अजून',nt:'नवीन लेखांची सूचना',ntOn:'चालू',ntOff:'बंद',ntYes:'धन्यवाद! आता नवीन लेख आला की सूचना मिळेल.',ntNo:'सूचना बंद केल्या.',ntDen:'सूचनांची परवानगी मिळाली नाही. फोनच्या Chrome/ॲप सेटिंगमध्ये सूचनांना परवानगी द्या.',ntErr:'काहीतरी चुकलं. थोड्या वेळाने पुन्हा प्रयत्न करा.'},
+en:{home:'Home',labels:'Labels',archive:'Archive',search:'Search',saved:'Saved',settings:'Settings',load:'Loading posts…',empty:'Nothing here yet.',err:'Could not load posts. Check your internet.',off:'Offline – showing older posts.',retry:'Try again',pin:'📌 Pinned',orig:'Open original post',share:'Share',like:'Like',save:'Bookmark',unsave:'Remove bookmark',cm:'Comments',cmb:'Comment on Blogger',ph:'Search titles or words…',theme:'Theme',auto:'Auto',light:'Light',dark:'Dark',ts:'Text size',lang:'Language',inst:'Install this app',ih:'In the browser menu (⋮) choose “Add to Home screen / Install app”.',sa:'Share this app',fb:'Send feedback',fbp:'Write your feedback here…',send:'Send',about:'About the Blogger',lk:'Posts you liked',all:'‹ All',noph:'Photo',back:'‹ Back',cp:'Link copied.',posts:'posts',more:'more',nt:'New post notifications',ntOn:'On',ntOff:'Off',ntYes:'Thank you! You will now get a notification when a new post is published.',ntNo:'Notifications turned off.',ntDen:'Notification permission was not granted. Please allow notifications in your phone settings.',ntErr:'Something went wrong. Please try again in a while.'}};
 const $=s=>document.querySelector(s),L=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},W=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const P=Object.assign({lang:'mr',theme:'auto',size:18},L('aff_p')||{});
 const S={view:'home',posts:[],st:'load',label:null,ym:null,likes:L('aff_l')||[],marks:L('aff_b')||[]};
 const t=k=>T[P.lang][k];
+function ntBox(){const N=window.AFFNotify;if(!N||!N.supported)return'';const on=N.isOn();return `<div class="box"><b>🔔 ${t('nt')}</b><div><button class="btn${on?'':' o'}" data-a="nton">${t('ntOn')}</button><button class="btn${on?' o':''}" data-a="ntoff">${t('ntOff')}</button></div></div>`}
+async function nt(on){const N=window.AFFNotify;if(!N||!N.supported)return;const r=on?await N.enable():await N.disable();draw();toast(r==='ok'?t('ntYes'):r==='off'?t('ntNo'):r==='denied'?t('ntDen'):t('ntErr'))}
 const sv=()=>W('aff_p',P);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function jsonp(u){return new Promise((ok,no)=>{const n='cb'+Math.random().toString(36).slice(2),s=document.createElement('script');window[n]=d=>{ok(d);s.remove();delete window[n]};s.onerror=()=>{s.remove();no()};s.src=u+'&alt=json-in-script&callback='+n;document.head.appendChild(s)})}
@@ -107,6 +109,7 @@ function draw(){document.documentElement.dataset.theme=P.theme;document.document
   h+=`<div class="box"><b>${t('lang')}</b><div>${Bt('lang','mr','मराठी')}${Bt('lang','en','English')}</div></div>
 <div class="box"><b>${t('theme')}</b><div>${Bt('theme','auto',t('auto'))}${Bt('theme','light',t('light'))}${Bt('theme','dark',t('dark'))}</div></div>
 <div class="box"><b>${t('ts')}: ${P.size}px</b><input type="range" id="sz" min="14" max="28" value="${P.size}" style="width:100%;height:36px"></div>
+${ntBox()}
 <div class="box"><b>❤️ ${t('lk')}: ${S.likes.length}</b></div>
 <div class="box"><a class="btn" href="https://github.com/bhushandeshpande53-prog/purnviram/releases/download/v1.0/default.apk" target="_blank" rel="noopener">⬇️ ${t('inst')}</a><button class="btn o" data-a="sapp">↗ ${t('sa')}</button></div>
 <div class="box"><b>${t('fb')}</b><textarea id="fbt" rows="4" placeholder="${t('fbp')}"></textarea><button class="btn" data-a="fb">${t('send')}</button></div>
@@ -133,7 +136,7 @@ document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v
  else if(d.o)openP(d.o);else if(d.l){S.label=d.l;draw()}else if(d.y){S.ym=d.y;draw()}
  else if(d.s){P[d.s]=d.x;sv();draw()}
  
- else if(d.a==='refresh')load();else if(d.a==='clr'){S.label=null;S.ym=null;draw()}
+ else if(d.a==='nton'||d.a==='ntoff')nt(d.a==='nton');else if(d.a==='refresh')load();else if(d.a==='clr'){S.label=null;S.ym=null;draw()}
  else if(d.a==='close')history.back();
  else if(d.a==='like'){const i=S.likes.indexOf(d.id);i<0?S.likes.push(d.id):S.likes.splice(i,1);W('aff_l',S.likes);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
  else if(d.a==='mark'){const i=S.marks.indexOf(d.id);i<0?S.marks.push(d.id):S.marks.splice(i,1);W('aff_b',S.marks);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
@@ -141,7 +144,7 @@ document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v
  else if(d.a==='sapp')share(location.href.split('#')[0],C.title);
  else if(d.a==='inst'){if(dp){dp.prompt()}else toast(t('ih'))}
  else if(d.a==='fb'){const v=($('#fbt').value||'').trim();if(!v)return;const u=C.feedbackRepo?`https://github.com/${C.feedbackRepo}/issues/new?title=${encodeURIComponent('Feedback')}&body=${encodeURIComponent(v)}`:`mailto:${C.email}?subject=${encodeURIComponent('Feedback: '+C.title)}&body=${encodeURIComponent(v)}`;location.href=u}});
-addEventListener('popstate',closeP);addEventListener('hashchange',openFromHash);
+addEventListener('popstate',closeP);addEventListener('hashchange',openFromHash);addEventListener('affnotify',()=>{if(S.view==='settings')draw()});
 ['copy','cut','contextmenu','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault()}));
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 draw();load();
