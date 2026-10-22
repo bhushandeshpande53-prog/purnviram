@@ -1,12 +1,12 @@
-// firebase-messaging-sw.js  (आवृत्ती v4)
-// सूचना दाखवणे आणि दाबल्यावर लेख उघडणे हे आपणच हाताळतो.
+// firebase-messaging-sw.js  (version v5)
+// Shows the notification and opens the article when it is tapped.
 
 const BLOG_HOME = "https://bhushandeshpande53.blogspot.com";
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
 
-// सूचना आली की ती दाखवा
+// When a push message arrives, show it
 self.addEventListener("push", (event) => {
   let p = {};
   try {
@@ -14,7 +14,7 @@ self.addEventListener("push", (event) => {
   } catch (e) {}
   const n = p.notification || {};
   const d = p.data || {};
-  const title = d.title || n.title || "नवीन लेख";
+  const title = d.title || n.title || "New article";
   const body = d.body || n.body || "";
   const url =
     d.link ||
@@ -27,7 +27,7 @@ self.addEventListener("push", (event) => {
   );
 });
 
-// सूचनेवर दाबल्यावर लेख उघडा
+// When the notification is tapped, open the article
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   const url =
