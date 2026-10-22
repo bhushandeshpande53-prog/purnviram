@@ -1,10 +1,13 @@
-// firebase-messaging-sw.js  (version v6)
-// Shows the notification. When tapped, opens the article inside the app's own reading view.
+// firebase-messaging-sw.js  (version v7)
+// Shows the notification with the app icon. When tapped, opens the article inside the app's own reading view.
 
 const BLOG_HOME = "https://bhushandeshpande53.blogspot.com";
 
 // The app's address = one folder above this file's scope
 const APP_URL = new URL("../", self.registration.scope).href;
+
+// App icon shown in the notification
+const ICON_URL = APP_URL + "icon-192.png";
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
@@ -26,7 +29,11 @@ self.addEventListener("push", (event) => {
     n.click_action ||
     BLOG_HOME;
   event.waitUntil(
-    self.registration.showNotification(title, { body: body, data: { url: url } })
+    self.registration.showNotification(title, {
+      body: body,
+      icon: ICON_URL,
+      data: { url: url },
+    })
   );
 });
 
