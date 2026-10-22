@@ -83,7 +83,7 @@ async function load(){S.st='load';draw();const all=[],seen={};let i=1,tot=1e9,ok
   if(!en.length)break;i+=en.length;if(tot===1e9&&en.length<50)break}
   S.posts=all;S.st='ok';W('aff_c',all)}
  catch(e){const c=L('aff_c');if(c&&c.length){S.posts=c;S.st='off'}else S.st='err'}
- draw()}
+ draw();openFromHash()}
 const dstr=d=>new Date(d).toLocaleDateString(P.lang==='mr'?'mr-IN':'en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const sorted=l=>[...l].sort((a,b)=>(b.labels.includes(C.pin)-a.labels.includes(C.pin))||(new Date(b.date)-new Date(a.date)));
 const chips=p=>p.labels.filter(l=>l!==C.pin).map((l,i)=>`<span class="chip c${i%5}">${esc(l)}</span>`).join('');
@@ -122,6 +122,9 @@ function openP(id,np){const p=S.posts.find(x=>x.id===id);if(!p)return;const r=$(
  r.style.display='block';r.scrollTop=0;if(!np)history.pushState({r:1},'');
  const g=C.giscus;if(g.repo){const s=document.createElement('script');s.src='https://giscus.app/client.js';s.async=true;s.crossOrigin='anonymous';Object.entries({'data-repo':g.repo,'data-repo-id':g.repoId,'data-category':g.category,'data-category-id':g.categoryId,'data-mapping':'specific','data-term':id,'data-theme':document.body.clientWidth&&matchMedia('(prefers-color-scheme:dark)').matches&&P.theme==='auto'||P.theme==='dark'?'dark':'light','data-lang':'en'}).forEach(([k,v])=>s.setAttribute(k,v));$('#cm').appendChild(s)}else $('#cm').innerHTML=`<a class="btn" href="${p.link}#comments" target="_blank" rel="noopener">💬 ${t('cmb')}</a>`}
 function closeP(){$('#rd').style.display='none'}
+function openFromHash(){const m=location.hash.match(/^#open=(.+)$/);if(!m||!S.posts.length)return;let u;try{u=decodeURIComponent(m[1])}catch(e){return}
+ const n=x=>String(x).replace(/^https?:\/\//,'').replace(/[?#].*$/,'').replace(/\/$/,'');
+ const p=S.posts.find(x=>n(x.link)===n(u));history.replaceState(null,'',location.pathname+location.search);if(p)openP(p.id)}
 let dp=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
 function toast(s){alert(s)}
 async function share(u,ti){try{if(navigator.share)await navigator.share({title:ti,url:u});else{await navigator.clipboard.writeText(u);toast(t('cp'))}}catch(e){}}
@@ -138,7 +141,7 @@ document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v
  else if(d.a==='sapp')share(location.href.split('#')[0],C.title);
  else if(d.a==='inst'){if(dp){dp.prompt()}else toast(t('ih'))}
  else if(d.a==='fb'){const v=($('#fbt').value||'').trim();if(!v)return;const u=C.feedbackRepo?`https://github.com/${C.feedbackRepo}/issues/new?title=${encodeURIComponent('Feedback')}&body=${encodeURIComponent(v)}`:`mailto:${C.email}?subject=${encodeURIComponent('Feedback: '+C.title)}&body=${encodeURIComponent(v)}`;location.href=u}});
-addEventListener('popstate',closeP);
+addEventListener('popstate',closeP);addEventListener('hashchange',openFromHash);
 ['copy','cut','contextmenu','dragstart'].forEach(ev=>document.addEventListener(ev,e=>{if(!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault()}));
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 draw();load();

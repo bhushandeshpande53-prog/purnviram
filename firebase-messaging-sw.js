@@ -1,7 +1,10 @@
-// firebase-messaging-sw.js  (version v5)
-// Shows the notification and opens the article when it is tapped.
+// firebase-messaging-sw.js  (version v6)
+// Shows the notification. When tapped, opens the article inside the app's own reading view.
 
 const BLOG_HOME = "https://bhushandeshpande53.blogspot.com";
+
+// The app's address = one folder above this file's scope
+const APP_URL = new URL("../", self.registration.scope).href;
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
@@ -27,10 +30,12 @@ self.addEventListener("push", (event) => {
   );
 });
 
-// When the notification is tapped, open the article
+// When the notification is tapped, open the app and show that article
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url =
-    (event.notification.data && event.notification.data.url) || BLOG_HOME;
-  event.waitUntil(self.clients.openWindow(url.replace(/^http:/, "https:")));
+  const link = (event.notification.data && event.notification.data.url) || "";
+  const target = link
+    ? APP_URL + "#open=" + encodeURIComponent(link.replace(/^http:/, "https:"))
+    : APP_URL;
+  event.waitUntil(self.clients.openWindow(target));
 });
