@@ -39,7 +39,7 @@ input[type=text],textarea{width:100%;padding:12px;border-radius:14px;border:2px 
 .about p{line-height:1.8}.about a{color:var(--pr);word-break:break-all}
 footer{text-align:center;font-size:12px;color:var(--mu);padding:10px}
 .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;flex-wrap:wrap}
-</style></head><body>
+.nb{display:inline-block;background:#e53935;color:#fff;font-size:10px;font-weight:700;letter-spacing:.5px;padding:1px 7px;border-radius:9px;margin-right:6px;vertical-align:middle}</style></head><body>
 <header><div class="top"><h1 id="ti"></h1></div><p class="sub" id="su"></p></header>
 <main id="m"></main>
 <nav class="nav" id="nv"></nav>
@@ -70,6 +70,10 @@ const $=s=>document.querySelector(s),L=k=>{try{return JSON.parse(localStorage.ge
 const P=Object.assign({lang:'mr',theme:'auto',size:18},L('aff_p')||{});
 const S={view:'home',posts:[],st:'load',label:null,ym:null,likes:L('aff_l')||[],marks:L('aff_b')||[]};
 const t=k=>T[P.lang][k];
+let NB=L('aff_nb'),RD=L('aff_rd');if(!Array.isArray(RD))RD=[];
+const isNew=p=>!!NB&&new Date(p.date)>new Date(NB)&&!RD.includes(p.id);
+function markRead(id){if(RD.includes(id))return;RD.push(id);W('aff_rd',RD);document.querySelectorAll('[data-o="'+id+'"] .nb').forEach(e=>e.remove())}
+function initNB(a){if(NB||!a.length)return;NB=a.reduce((m,p)=>new Date(p.date)>new Date(m)?p.date:m,a[0].date);W('aff_nb',NB)}
 function ntBox(){const N=window.AFFNotify;if(!N||!N.supported)return'';const on=N.isOn();return `<div class="box"><b>🔔 ${t('nt')}</b><div><button class="btn${on?'':' o'}" data-a="nton">${t('ntOn')}</button><button class="btn${on?' o':''}" data-a="ntoff">${t('ntOff')}</button></div></div>`}
 async function nt(on){const N=window.AFFNotify;if(!N||!N.supported)return;const r=on?await N.enable():await N.disable();draw();toast(r==='ok'?t('ntYes'):r==='off'?t('ntNo'):r==='denied'?t('ntDen'):t('ntErr'))}
 const sv=()=>W('aff_p',P);
@@ -83,13 +87,13 @@ async function load(){S.st='load';draw();const all=[],seen={};let i=1,tot=1e9,ok
   ok=true;const f=r.feed,en=f.entry||[];tot=+((f['openSearch$totalResults']||{}).$t)||tot;
   en.forEach(x=>{try{const p=parse(x);if(!seen[p.id]){seen[p.id]=1;all.push(p)}}catch(e){}});
   if(!en.length)break;i+=en.length;if(tot===1e9&&en.length<50)break}
-  S.posts=all;S.st='ok';W('aff_c',all)}
+  S.posts=all;S.st='ok';W('aff_c',all);initNB(all)}
  catch(e){const c=L('aff_c');if(c&&c.length){S.posts=c;S.st='off'}else S.st='err'}
  draw();openFromHash()}
 const dstr=d=>new Date(d).toLocaleDateString(P.lang==='mr'?'mr-IN':'en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const sorted=l=>[...l].sort((a,b)=>(b.labels.includes(C.pin)-a.labels.includes(C.pin))||(new Date(b.date)-new Date(a.date)));
 const chips=p=>p.labels.filter(l=>l!==C.pin).map((l,i)=>`<span class="chip c${i%5}">${esc(l)}</span>`).join('');
-function card(p,h){const pin=p.labels.includes(C.pin);return`<article class="card${h?' hero':''}" data-o="${p.id}"><div class="th${p.img?'':' no'}" ${p.img?`style="background-image:url('${esc(p.img)}')"`:''}>${p.img?'':'🍃'}</div><div class="cb"><div class="dt">${pin?t('pin')+' · ':''}${p.vid?'▶ · ':''}${dstr(p.date)}</div><h3>${esc(p.title)}</h3>${chips(p)}</div></article>`}
+function card(p,h){const pin=p.labels.includes(C.pin);return`<article class="card${h?' hero':''}" data-o="${p.id}"><div class="th${p.img?'':' no'}" ${p.img?`style="background-image:url('${esc(p.img)}')"`:''}>${p.img?'':'🍃'}</div><div class="cb"><div class="dt">${isNew(p)?'<span class="nb">NEW</span>':''}${pin?t('pin')+' · ':''}${p.vid?'▶ · ':''}${dstr(p.date)}</div><h3>${esc(p.title)}</h3>${chips(p)}</div></article>`}
 const list=(a,x)=>a.length?`<div class="grid">${a.map((p,i)=>card(p,x&&i===0)).join('')}</div>`:`<div class="msg">${t('empty')}</div>`;
 function draw(){document.documentElement.dataset.theme=P.theme;document.documentElement.style.setProperty('--fs',P.size+'px');document.documentElement.lang=P.lang;
  $('#ti').textContent=C.title;$('#su').textContent=C.subtitle;
@@ -118,7 +122,7 @@ ${ntBox()}
  m.innerHTML=h;
  if(v==='search'){$('#q').oninput=e=>{const q=e.target.value.trim().toLowerCase();$('#res').innerHTML=q?list(S2.filter(p=>(p.title+' '+p.text+' '+p.labels.join(' ')).toLowerCase().includes(q))):''}}
  if(v==='settings')$('#sz').oninput=e=>{P.size=+e.target.value;sv();document.documentElement.style.setProperty('--fs',P.size+'px');e.target.previousElementSibling.textContent=t('ts')+': '+P.size+'px'}}
-function openP(id,np){const p=S.posts.find(x=>x.id===id);if(!p)return;const r=$('#rd'),lk=S.likes.includes(id),bm=S.marks.includes(id);
+function openP(id,np){const p=S.posts.find(x=>x.id===id);if(!p)return;markRead(id);const r=$('#rd'),lk=S.likes.includes(id),bm=S.marks.includes(id);
  r.innerHTML=`<div class="in"><div class="bar"><button class="btn o" data-a="close">${t('back')}</button></div><div class="dt">${dstr(p.date)}</div><h2 style="font-size:1.4em;margin:6px 0">${esc(p.title)}</h2><div>${chips(p)}</div><div class="body">${p.html}</div>
 <div class="row"><button class="btn${lk?'':' o'}" data-a="like" data-id="${id}">${lk?'❤️':'🤍'} ${t('like')}</button><button class="btn o" data-a="share" data-id="${id}">↗ ${t('share')}</button><button class="btn o" data-a="mark" data-id="${id}">🔖 ${bm?t('unsave'):t('save')}</button><a class="btn o" href="${p.link}" target="_blank" rel="noopener">🌐 ${t('orig')}</a></div>
 <h2>${t('cm')}</h2><div id="cm"></div><footer>${C.copyright}</footer></div>`;
