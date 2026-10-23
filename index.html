@@ -141,7 +141,7 @@ document.addEventListener('click',e=>{const x=e.target.closest('[data-a],[data-v
  else if(d.a==='like'){const i=S.likes.indexOf(d.id);i<0?S.likes.push(d.id):S.likes.splice(i,1);W('aff_l',S.likes);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
  else if(d.a==='mark'){const i=S.marks.indexOf(d.id);i<0?S.marks.push(d.id):S.marks.splice(i,1);W('aff_b',S.marks);const sc=$('#rd').scrollTop;openP(d.id,1);$('#rd').scrollTop=sc}
  else if(d.a==='share'){const p=S.posts.find(q=>q.id===d.id);share(p.link,p.title)}
- else if(d.a==='sapp')share(location.href.split('#')[0],C.title);
+ else if(d.a==='sapp')share('https://github.com/bhushandeshpande53-prog/purnviram/releases/download/v1.0/default.apk',C.title);
  else if(d.a==='inst'){if(dp){dp.prompt()}else toast(t('ih'))}
  else if(d.a==='fb'){const v=($('#fbt').value||'').trim();if(!v)return;const u=C.feedbackRepo?`https://github.com/${C.feedbackRepo}/issues/new?title=${encodeURIComponent('Feedback')}&body=${encodeURIComponent(v)}`:`mailto:${C.email}?subject=${encodeURIComponent('Feedback: '+C.title)}&body=${encodeURIComponent(v)}`;location.href=u}});
 addEventListener('popstate',closeP);addEventListener('hashchange',openFromHash);addEventListener('affnotify',()=>{if(S.view==='settings')draw()});
