@@ -23,7 +23,32 @@ async function main() {
   const title = entry.title.$t;
   const published = entry.published.$t;
   const alt = (entry.link || []).find((l) => l.rel === "alternate");
-  const link = (alt ? alt.href : "https://bhushandeshpande53.blogspot.com").replace("http://", "https://");
+  const link = alt ? alt.href : "https://bhushandeshpande53.blogspot.com";
+
+  // लेखातील पहिलं चित्र (नसेल तर Blogger ची चित्र-खूण)
+  const html =
+    (entry.content && entry.content.$t) ||
+    (entry.summary && entry.summary.$t) ||
+    "";
+  const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+  let image = m
+    ? m[1]
+    : (entry["media$thumbnail"] && entry["media$thumbnail"].url) || "";
+  if (image.startsWith("//")) image = "https:" + image;
+  image = image.replace(/^http:/, "https:");
+  if (image.includes("googleusercontent.com")) {
+    image = image.replace(/\/s72-c\//, "/s800/");
+  }
+
+  // सूचनेच्या चित्रासाठी लहान (२५६ px चौकोनी) आवृत्ती
+  function resize(u, size) {
+    if (!u) return "";
+    if (!/googleusercontent\.com|blogspot\.com|ggpht\.com/.test(u)) return u;
+    u = u.replace(/\/(?:s\d+|w\d+-h\d+)(?:-[a-z]+)*\//, "/s" + size + "-c/");
+    u = u.replace(/=(?:s|w)\d+[^?#]*$/, "=s" + size + "-c");
+    return u;
+  }
+  const icon = resize(image, 256);
 
   // 2. शेवटी कोणता लेख पाहिला होता ते तपासा
   const metaRef = db.collection("meta").doc("lastPost");
@@ -52,7 +77,8 @@ async function main() {
     const result = await admin.messaging().sendEachForMulticast({
       tokens: batch,
       notification: { title: "नवीन लेख", body: title },
-      webpush: { fcmOptions: { link } },
+      data: icon ? { link, image, icon } : { link },
+      webpush: { headers: { Urgency: "high", TTL: "86400" } },
     });
 
     // जे फोन आता अस्तित्वात नाहीत त्यांच्या नोंदी पुसा
